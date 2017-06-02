@@ -14,6 +14,8 @@ public class Blog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String blogName;
+    private String description;
+
 
     public Blog() {
     }
@@ -22,12 +24,26 @@ public class Blog {
         this.blogName = blogName;
     }
 
+    public Blog(String blogName, String description) {
+        this.blogName = blogName;
+        this.description = description;
+    }
+
     @Override
     public String toString() {
         return "Blog{" +
                 "id=" + id +
                 ", blogName='" + blogName + '\'' +
                 '}';
+    }
+
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getId() {

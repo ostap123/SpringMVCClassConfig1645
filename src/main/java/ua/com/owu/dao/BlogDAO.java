@@ -1,10 +1,7 @@
 package ua.com.owu.dao;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import ua.com.owu.entity.Blog;
 
-/**
- * Created by okten21 on 26.05.17.
- */
-public interface BlogDAO {
-    void save(Blog blog);
+public interface BlogDAO extends JpaRepository<Blog, Integer>{
 }
