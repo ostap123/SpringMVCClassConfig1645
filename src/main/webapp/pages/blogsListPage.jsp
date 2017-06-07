@@ -8,6 +8,7 @@
         <p>
             ${blog.description}
         </p>
+        <a href="blog-${blog.id}">detalies</a>
         <hr>
         
     </c:forEach>

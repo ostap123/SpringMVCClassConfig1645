@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
+import ua.com.owu.entity.Blog;
 import ua.com.owu.service.BlogService;
 
 @Controller
@@ -19,17 +19,21 @@ public class MainController {
         model.addAttribute("xxx", 1111);
         return "index";
     }
-    @PostMapping("/saveBlog")
-    public String saveBlog(@RequestParam String blogName,
-                           @RequestParam String description){
-        blogService.save(blogName, description);
-        return "index";
-    }
+
+
 
     @GetMapping("/blogsList")
     public String   blogsList(Model model){
         model.addAttribute("blogs", blogService.findAllBlogs());
         return "blogsListPage";
+    }
+
+    @GetMapping("/blog-{xxx}")
+    public String blogDetails(@PathVariable("xxx") int id, Model model){
+        Blog oneById = blogService.findOneById(id);
+        model.addAttribute("blog", oneById);
+
+        return "blogDetailsPage";
     }
 
 }

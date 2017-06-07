@@ -19,7 +19,7 @@ public class BlogServiceImpl implements BlogService {
     public void save(String blogName, String description) {
 
         if (blogName != null && !blogName.isEmpty()) {
-            Blog blog = new Blog(blogName, description);
+            Blog blog = Blog.builder().blogName(blogName).description(description).build();
             blogDAO.save(blog);
         }else {
             System.out.println("error!");

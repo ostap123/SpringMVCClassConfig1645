@@ -1,64 +1,27 @@
 package ua.com.owu.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.*;
 
-/**
- * Created by okten21 on 26.05.17.
- */
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String blogName;
     private String description;
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "blog")
+    private List<Post> posts = new ArrayList<Post>();
 
 
-    public Blog() {
-    }
 
-    public Blog(String blogName) {
-        this.blogName = blogName;
-    }
-
-    public Blog(String blogName, String description) {
-        this.blogName = blogName;
-        this.description = description;
-    }
-
-    @Override
-    public String toString() {
-        return "Blog{" +
-                "id=" + id +
-                ", blogName='" + blogName + '\'' +
-                '}';
-    }
-
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getBlogName() {
-        return blogName;
-    }
-
-    public void setBlogName(String blogName) {
-        this.blogName = blogName;
-    }
 }
